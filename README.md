@@ -2,6 +2,7 @@
 
 # jjdzr5-holidays
 
+0. Klasa domenowa na elementy pobrane z pliku JSON -> class DayOff
 
 1. Pokaż kalendarz dni wolnych, dni wolne pobrane z pliku JSON (class Calendar)
 2. Złóż wniosek o urlop
