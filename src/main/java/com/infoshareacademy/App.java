@@ -2,6 +2,6 @@ package com.infoshareacademy;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Holidays Inn");
+        System.out.println("Holidays");
     }
 }
