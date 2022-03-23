@@ -168,7 +168,7 @@ public class App {
         long days = day / (24 * 60 * 60 * 1000);
         long m_r = (26 - days);
 
-        System.out.println();// 17 18
+        System.out.println();
         System.out.printf("\n%10s*****************************************************\n", etc);
         System.out.printf("%10s*\t                WNIOSEK URLOPOWY%18s*", etc, etc);
         System.out.printf("\n%10s*****************************************************\n", etc);
