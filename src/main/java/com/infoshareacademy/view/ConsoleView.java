@@ -29,7 +29,7 @@ public class ConsoleView {
             row.setTextAlignment(TextAlignment.CENTER);
             asciiTable.addRule();
         }
-        asciiTable.getContext().setWidth(250);
+        asciiTable.getContext().setWidth(180);
 
         asciiTable.getContext().setGrid(U8_Grids.borderDoubleLight());
         System.out.println(asciiTable.render());
