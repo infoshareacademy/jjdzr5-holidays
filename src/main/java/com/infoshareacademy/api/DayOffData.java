@@ -11,4 +11,9 @@ public class DayOffData {
         JsonReader jsonReader = new JsonReader();
         return jsonReader.getDayOffList();
     }
+
+    public static DayOff getDayOff() {
+        JsonReader jsonReader = new JsonReader();
+        return jsonReader.getDayOff();
+    }
 }

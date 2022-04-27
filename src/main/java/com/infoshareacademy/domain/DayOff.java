@@ -2,7 +2,11 @@ package com.infoshareacademy.domain;
 
 import com.infoshareacademy.DateHoliday;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import static java.util.Arrays.asList;
 
 public class DayOff {
 
@@ -69,4 +73,10 @@ public class DayOff {
     public void setStates(String states) {
         this.states = states;
     }
+
+    public int getId() {
+        int i = 0;
+        return i + 1;
+    }
+
 }
