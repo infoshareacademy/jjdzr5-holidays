@@ -36,9 +36,9 @@ public class App {
         System.out.printf("%10s**********************    PRACODAWCA   **********************\n", etc);
         System.out.printf("%10s*\t1. Pokaż kalendarz dni wolnych%28s*\n", etc, etc);
         System.out.printf("%10s*\t2. Posortuj listę dni wolnych %28s*\n", etc, etc);
-        System.out.printf("%10s*\t3. Wyświetl dzień wolny po dacie%1s*\n", etc, etc);
-        System.out.printf("%10s*\t4. Filtrowanie dni wolnych po zakresie dat%1s*\n", etc, etc);
-        System.out.printf("%10s*\t5. Filtrowanie dni wolnych po typie dnia wolnego%1s*\n", etc, etc);
+        System.out.printf("%10s*\t3. Wyświetl dzień wolny po dacie%26s*\n", etc, etc);
+        System.out.printf("%10s*\t4. Filtrowanie dni wolnych po zakresie dat%16s*\n", etc, etc);
+        System.out.printf("%10s*\t5. Filtrowanie dni wolnych po typie dnia wolnego%10s*\n", etc, etc);
         System.out.printf("%10s*\t0. Wyjdź %49s*", etc, etc);
         System.out.printf("\n%10s*************************************************************\n", etc);
         System.out.printf("%10s*\tWybierz opcję 0 - 5 : ", etc);
