@@ -1,11 +1,13 @@
 package com.infoshareacademy;
 
+import java.io.Console;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
 import com.infoshareacademy.api.DayOffData;
 import com.infoshareacademy.domain.DayOff;
+import com.infoshareacademy.filter.Filter;
 import com.infoshareacademy.view.ConsoleView;
 
 
@@ -22,7 +24,12 @@ public class App {
 
     public static void main(String[] args) throws IOException, ParseException {
         // write your code here
-        new App().window();
+        calendarPrint();
+        Filter filter = new Filter();
+        ConsoleView.displayList(filter.filterHolidayByType());
+        ConsoleView.displayList(filter.filterHolidayByDates());
+
+
     }
 
     public void window() throws IOException, ParseException {
