@@ -67,8 +67,4 @@ public class JsonReader {
             throw new RuntimeException("Empty entry class");
         }
     }
-
-    public DayOff getDayOff() {
-        return dayOffList.get(0);
-    }
 }

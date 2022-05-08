@@ -13,12 +13,11 @@ public class ConsoleView {
     public static void displayList(ArrayList<DayOff> dayOffList) {
         AsciiTable asciiTable = new AsciiTable();
         asciiTable.addRule();
-        AT_Row header = asciiTable.addRow("ID", "Name", "Description", "Country", "Date", "Type", "Locations", "Sates");
+        AT_Row header = asciiTable.addRow("Name", "Description", "Country", "Date", "Type", "Locations", "Sates");
         header.setTextAlignment(TextAlignment.CENTER);
         asciiTable.addRule();
         for (DayOff dayOff : dayOffList) {
             AT_Row row = asciiTable.addRow(
-                    dayOff.getId(),
                     dayOff.getName(),
                     dayOff.getDescription(),
                     dayOff.getCountry().get("name"),
@@ -38,11 +37,10 @@ public class ConsoleView {
     public static void displayElement(DayOff id) {
         AsciiTable asciiTable = new AsciiTable();
         asciiTable.addRule();
-        AT_Row header = asciiTable.addRow("ID", "Name", "Description", "Country", "Date", "Type", "Locations", "Sates");
+        AT_Row header = asciiTable.addRow("Name", "Description", "Country", "Date", "Type", "Locations", "Sates");
         header.setTextAlignment(TextAlignment.CENTER);
         asciiTable.addRule();
         AT_Row row = asciiTable.addRow(
-                id.getId(),
                 id.getName(),
                 id.getDescription(),
                 id.getCountry().get("name"),

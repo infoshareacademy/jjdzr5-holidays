@@ -2,10 +2,13 @@ package com.infoshareacademy;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.*;
 
 import com.infoshareacademy.api.DayOffData;
 import com.infoshareacademy.domain.DayOff;
+import com.infoshareacademy.domain.DaysOff;
+import com.infoshareacademy.utils.HolidayUtils;
 import com.infoshareacademy.view.ConsoleView;
 
 
@@ -33,19 +36,16 @@ public class App {
         System.out.printf("%10s**********************    PRACODAWCA   **********************\n", etc);
         System.out.printf("%10s*\t1. Pokaż kalendarz dni wolnych%28s*\n", etc, etc);
         System.out.printf("%10s*\t2. Posortuj listę dni wolnych %28s*\n", etc, etc);
-        System.out.printf("%10s*\t3. Wyświetlenie wszystkich złożonych wniosków urlopowych %1s*\n", etc, etc);
-        System.out.printf("%10s*\t4. Złóż wniosek o urlop %34s*\n", etc, etc);
-        System.out.printf("%10s*\t5. Usuń wniosek o urlop %34s*\n", etc, etc);
-        System.out.printf("%10s*\t6. Edytuj wniosek o urlop %32s*\n", etc, etc);
-        System.out.printf("%10s*\t7. Wyszukaj wniosek o urlop po zakresie dat %14s*\n", etc, etc);
-        System.out.printf("%10s*\t8. Posortuj po dacie wnioski o urlop %21s*\n", etc, etc);
+        System.out.printf("%10s*\t3. Wyświetl dzień wolny po dacie%1s*\n", etc, etc);
+        System.out.printf("%10s*\t4. Filtrowanie dni wolnych po zakresie dat%1s*\n", etc, etc);
+        System.out.printf("%10s*\t5. Filtrowanie dni wolnych po typie dnia wolnego%1s*\n", etc, etc);
         System.out.printf("%10s*\t0. Wyjdź %49s*", etc, etc);
         System.out.printf("\n%10s*************************************************************\n", etc);
-        System.out.printf("%10s*\tWybierz opcję 0 - 8 : ", etc);
+        System.out.printf("%10s*\tWybierz opcję 0 - 5 : ", etc);
         int option = new Scanner(System.in).nextInt();
         switch (option) {
-            case 1 -> printElement(DayOffData.getDayOff());
-            //case 1 -> calendarPrint();
+            case 1 -> printElement();
+            // case 1 -> calendarPrint();
             case 0 -> System.exit(0);
             default -> System.out.println("Zła opcja, wybierz inną.");
         }
@@ -53,7 +53,7 @@ public class App {
 
     private static void calendarPrint() throws IOException {
 
-        ArrayList<DayOff> dayOffList = DayOffData.getDyOffList();
+        ArrayList<DayOff> dayOffList = DayOffData.getDayOffList();
 
         ConsoleView.displayList(dayOffList);
 
@@ -70,12 +70,28 @@ public class App {
         }*/
     }
 
-    public static void printElement(DayOff dayOff) {
+    public static void printElement() {
         System.out.printf("%10s", "");
-        System.out.print("Podaj id : ");
-        int id = new Scanner(System.in).nextInt();
-        DayOff dayOffs = DayOffData.getDayOff();
-        ConsoleView.displayElement(dayOffs);
-    }
+        Scanner scanner = new Scanner(System.in);
+        boolean inputIsIncorrect = true;
+        LocalDate localDateFromUser = null;
+        do {
+            try {
+                System.out.print("Podaj datę w formacie yyyy-MM-dd : ");
+                String dateInputFromUser = scanner.next();
+                localDateFromUser = LocalDate.parse(dateInputFromUser);
+                inputIsIncorrect = false;
+            } catch (Exception e) {
+                System.out.print("Format daty jest niepoprawny.");
+            }
+        } while (inputIsIncorrect);
 
+        ArrayList<DayOff> dayOffList = DayOffData.getDayOffList();
+        for (DayOff dayOff : dayOffList) {
+            LocalDate iso = HolidayUtils.refactorDateHolidayToLocalDate(dayOff.getDate().getIso());
+            if (iso.isEqual(localDateFromUser)) {
+                ConsoleView.displayElement(dayOff);
+            }
+        }
+    }
 }
