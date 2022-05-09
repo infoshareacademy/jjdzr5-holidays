@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 public class Filter {
 
-    public ArrayList<DayOff> filterHolidayByType () {
+    public static ArrayList<DayOff> filterHolidayByType () {
         Stream<DayOff> dayOffStream = DayOffData.getDyOffList().stream();
         String filteredType = UserInteraction.getTypeOfHoliday();
         List<DayOff> filteredList;
@@ -26,7 +26,7 @@ public class Filter {
         return new ArrayList<DayOff>(filteredList);
     }
 
-    public ArrayList<DayOff> filterHolidayByDates () {
+    public static ArrayList<DayOff> filterHolidayByDates () {
         Stream<DayOff> dayOffStream = DayOffData.getDyOffList().stream();
         List<LocalDate> dates = getStartAndFinishDate();
         List<DayOff> filteredList;
@@ -40,7 +40,7 @@ public class Filter {
     }
 
 
-    private List<LocalDate> getStartAndFinishDate () {
+    private static List<LocalDate> getStartAndFinishDate () {
         boolean inputDatesAreIncorrect = true;
         LocalDate start;
         LocalDate finish;
