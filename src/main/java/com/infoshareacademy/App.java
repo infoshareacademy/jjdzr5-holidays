@@ -1,6 +1,7 @@
 package com.infoshareacademy;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.*;
@@ -45,7 +46,7 @@ public class App {
         int option = new Scanner(System.in).nextInt();
         switch (option) {
             case 1 -> calendarPrint();
-            case 6 -> searchNameDayOff();
+            case 2 -> sortByDate();
             case 0 -> System.exit(0);
             default -> System.out.println("Zła opcja, wybierz inną.");
         }
@@ -70,33 +71,14 @@ public class App {
         }*/
     }
 
-    public static void searchNameDayOff() {
-        System.out.printf("%10s", "");
-        Scanner scanner = new Scanner(System.in);
-        boolean inputIsIncorrect = true;
-        String nameFromUser = null;
-        List<DayOff> localNamefromUser = null;
-        do {
-            try {
-                System.out.print("Podaj nazwę dnia wolnego : ");
-                nameFromUser = scanner.nextLine();
-                String finalNameFromUser = nameFromUser;
-                localNamefromUser = DayOffData.getDayOffList()
-                        .stream()
-                        .filter(dayOff -> dayOff.getName().equals(finalNameFromUser))
-                        .collect(Collectors.toList());
-                inputIsIncorrect = false;
-            } catch (Exception e) {
-                System.out.printf("%10s", "");
-                System.out.println("Niepoprawna nazwa dnia wolnego.");
-                System.out.printf("%10s", "");
-            }
-        }   while (inputIsIncorrect);
-        List<DayOff> dayOffList = localNamefromUser;
-        for (DayOff dayOff : dayOffList) {
-            if (dayOff.getName().equals(nameFromUser)) {
-                ConsoleView.displayList((ArrayList<DayOff>) dayOffList);
-            }
-        }
+    public static void sortByDate() {
+        ArrayList<DayOff> dayOffList = DayOffData.getDayOffList();
+        Properties properties = (Properties) Paths.get("src", "main", "resources", "sort_date_desc.properties");
+        Collections.sort(dayOffList, (o1, o2) -> {
+            LocalDate date1 = HolidayUtils.refactorDateHolidayToLocalDate(o2.getDate().getIso());
+            return date1.compareTo(HolidayUtils.refactorDateHolidayToLocalDate(o1.getDate().getIso()));
+        });
+        ConsoleView.displayList(dayOffList);
+
     }
 }
