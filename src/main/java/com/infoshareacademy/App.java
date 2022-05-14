@@ -1,5 +1,6 @@
 package com.infoshareacademy;
 
+import java.io.Console;
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.util.stream.Collectors;
 
 import com.infoshareacademy.api.DayOffData;
 import com.infoshareacademy.domain.DayOff;
+import com.infoshareacademy.search.Search;
 import com.infoshareacademy.utils.HolidayUtils;
 import com.infoshareacademy.view.ConsoleView;
 
@@ -45,10 +47,15 @@ public class App {
         int option = new Scanner(System.in).nextInt();
         switch (option) {
             case 1 -> calendarPrint();
-            case 6 -> searchNameDayOff();
+            case 6 -> searchHolidayByName();
             case 0 -> System.exit(0);
             default -> System.out.println("Zła opcja, wybierz inną.");
         }
+    }
+
+    private void searchHolidayByName() {
+        ArrayList<DayOff> matches = Search.findMatchingDaysOff();
+        ConsoleView.displayList(matches);
     }
 
     private static void calendarPrint() throws IOException {
@@ -56,47 +63,6 @@ public class App {
         ArrayList<DayOff> dayOffList = DayOffData.getDayOffList();
 
         ConsoleView.displayList(dayOffList);
-
-        /*for (int i = 0; i < holidayData.size(); i++) {
-            System.out.printf("%10s", "");
-            System.out.println(dayOffList.get(i).getName());
-            System.out.println(dayOffList.get(i).getDescription());
-            System.out.println(dayOffList.get(i).getDate());
-            System.out.println(dayOffList.get(i).getCountry());
-            System.out.println(dayOffList.get(i).getLocations());
-            System.out.println(dayOffList.get(i).getDateFrom());
-            System.out.println(dayOffList.get(i).getType());
-            System.out.println("");
-        }*/
     }
 
-    public static void searchNameDayOff() {
-        System.out.printf("%10s", "");
-        Scanner scanner = new Scanner(System.in);
-        boolean inputIsIncorrect = true;
-        String nameFromUser = null;
-        List<DayOff> localNamefromUser = null;
-        do {
-            try {
-                System.out.print("Podaj nazwę dnia wolnego : ");
-                nameFromUser = scanner.nextLine();
-                String finalNameFromUser = nameFromUser;
-                localNamefromUser = DayOffData.getDayOffList()
-                        .stream()
-                        .filter(dayOff -> dayOff.getName().equals(finalNameFromUser))
-                        .collect(Collectors.toList());
-                inputIsIncorrect = false;
-            } catch (Exception e) {
-                System.out.printf("%10s", "");
-                System.out.println("Niepoprawna nazwa dnia wolnego.");
-                System.out.printf("%10s", "");
-            }
-        }   while (inputIsIncorrect);
-        List<DayOff> dayOffList = localNamefromUser;
-        for (DayOff dayOff : dayOffList) {
-            if (dayOff.getName().equals(nameFromUser)) {
-                ConsoleView.displayList((ArrayList<DayOff>) dayOffList);
-            }
-        }
-    }
 }
