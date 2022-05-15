@@ -1,15 +1,11 @@
 package com.infoshareacademy;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
-
 import com.infoshareacademy.api.DayOffData;
 import com.infoshareacademy.domain.DayOff;
-import com.infoshareacademy.utils.HolidayUtils;
+import com.infoshareacademy.sort.Sorted;
 import com.infoshareacademy.view.ConsoleView;
 
 
@@ -46,7 +42,7 @@ public class App {
         int option = new Scanner(System.in).nextInt();
         switch (option) {
             case 1 -> calendarPrint();
-            case 2 -> sortByDate();
+            case 2 -> Sorted.sortByName();
             case 0 -> System.exit(0);
             default -> System.out.println("Zła opcja, wybierz inną.");
         }
@@ -58,27 +54,7 @@ public class App {
 
         ConsoleView.displayList(dayOffList);
 
-        /*for (int i = 0; i < holidayData.size(); i++) {
-            System.out.printf("%10s", "");
-            System.out.println(dayOffList.get(i).getName());
-            System.out.println(dayOffList.get(i).getDescription());
-            System.out.println(dayOffList.get(i).getDate());
-            System.out.println(dayOffList.get(i).getCountry());
-            System.out.println(dayOffList.get(i).getLocations());
-            System.out.println(dayOffList.get(i).getDateFrom());
-            System.out.println(dayOffList.get(i).getType());
-            System.out.println("");
-        }*/
     }
 
-    public static void sortByDate() {
-        ArrayList<DayOff> dayOffList = DayOffData.getDayOffList();
-        Properties properties = (Properties) Paths.get("src", "main", "resources", "sort_date_desc.properties");
-        Collections.sort(dayOffList, (o1, o2) -> {
-            LocalDate date1 = HolidayUtils.refactorDateHolidayToLocalDate(o2.getDate().getIso());
-            return date1.compareTo(HolidayUtils.refactorDateHolidayToLocalDate(o1.getDate().getIso()));
-        });
-        ConsoleView.displayList(dayOffList);
 
-    }
 }
