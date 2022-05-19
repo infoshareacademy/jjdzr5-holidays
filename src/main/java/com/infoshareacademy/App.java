@@ -53,17 +53,5 @@ public class App {
         ArrayList<DayOff> dayOffList = DayOffData.getDayOffList();
 
         ConsoleView.displayList(dayOffList);
-
-        /*for (int i = 0; i < holidayData.size(); i++) {
-            System.out.printf("%10s", "");
-            System.out.println(dayOffList.get(i).getName());
-            System.out.println(dayOffList.get(i).getDescription());
-            System.out.println(dayOffList.get(i).getDate());
-            System.out.println(dayOffList.get(i).getCountry());
-            System.out.println(dayOffList.get(i).getLocations());
-            System.out.println(dayOffList.get(i).getDateFrom());
-            System.out.println(dayOffList.get(i).getType());
-            System.out.println("");
-        }*/
     }
 }
