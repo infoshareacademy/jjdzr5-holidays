@@ -29,6 +29,7 @@ public class App {
     }
 
     public void window() throws IOException, ParseException {
+        while (true) {
         System.out.printf("\n%10s*************************************************************\n", etc);
         System.out.printf("%10s*\t                   Witaj w Holidays App%19s*", etc, etc);
         System.out.printf("\n%10s*************************************************************\n", etc);
@@ -52,6 +53,7 @@ public class App {
             case 6 -> Search.searchHolidayByName();
             case 0 -> System.exit(0);
             default -> System.out.println("Zła opcja, wybierz inną.");
+            }
         }
     }
 
