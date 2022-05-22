@@ -44,8 +44,8 @@ public class Filter {
         LocalDate start;
         LocalDate finish;
         do {
-            start = UserInteraction.getLocalDate();
-            finish = UserInteraction.getLocalDate();
+            start = UserInteraction.getStartLocalDate();
+            finish = UserInteraction.getFinishLocalDate();
             if (Period.between(finish, start).isNegative()) {
                 inputDatesAreIncorrect = false;
             } else {

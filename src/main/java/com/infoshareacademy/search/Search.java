@@ -16,14 +16,15 @@ public class Search {
     public static ArrayList<DayOff> findMatchingDaysOff() {
         String searchedPhrase = UserInteraction.getSearchedHolidayName().toLowerCase();
         Stream<DayOff> daysOffStream = daysOffList.stream();
-        System.out.println(daysOffList.get(0).getName().substring(0,5));
         List<DayOff> matchingDaysOff = daysOffStream.filter(dayOff -> {
             String substring = dayOff.getName().substring(0, searchedPhrase.length()).toLowerCase();
             return substring.equals(searchedPhrase);
         }).collect(Collectors.toList());
 
-
-        ConsoleView.displayList((ArrayList<DayOff>) matchingDaysOff);
         return (ArrayList<DayOff>) matchingDaysOff;
+    }
+    public static void searchHolidayByName() {
+        ArrayList<DayOff> matches = findMatchingDaysOff();
+        ConsoleView.displayList(matches);
     }
 }
