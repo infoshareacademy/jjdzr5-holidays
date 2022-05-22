@@ -1,17 +1,13 @@
 package com.infoshareacademy;
 
-import java.io.Console;
 import java.io.IOException;
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
-
 import com.infoshareacademy.api.DayOffData;
 import com.infoshareacademy.domain.DayOff;
 import com.infoshareacademy.search.Search;
-import com.infoshareacademy.utils.HolidayUtils;
 import com.infoshareacademy.view.ConsoleView;
+import com.infoshareacademy.view.PrintDayOffs;
 
 
 @SuppressWarnings("ALL")
@@ -47,6 +43,7 @@ public class App {
         int option = new Scanner(System.in).nextInt();
         switch (option) {
             case 1 -> calendarPrint();
+            case 3 -> PrintDayOffs.printDayOffByDate();
             case 6 -> searchHolidayByName();
             case 0 -> System.exit(0);
             default -> System.out.println("Zła opcja, wybierz inną.");
@@ -64,5 +61,4 @@ public class App {
 
         ConsoleView.displayList(dayOffList);
     }
-
 }
