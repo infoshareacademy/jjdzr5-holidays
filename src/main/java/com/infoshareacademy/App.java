@@ -14,11 +14,6 @@ import com.infoshareacademy.view.PrintDayOffs;
 
 @SuppressWarnings("ALL")
 public class App {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String RED_BOLD = "\033[1;31m";    // RED
-    public static final String CYAN_BOLD = "\033[1;36m";   // CYAN
-    public static final String GREEN_BOLD = "\033[1;32m";  // GREEN
-    public static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
     private String startDate;
     private String endDate;
     String etc = "";
@@ -45,7 +40,7 @@ public class App {
         System.out.printf("%10s*\tWybierz opcję 0 - 6 : ", etc);
         int option = new Scanner(System.in).nextInt();
         switch (option) {
-            case 1 -> calendarPrint();
+            case 1 -> ConsoleView.calendarPrint();
             case 2 -> Sorted.sortByName();
             case 3 -> PrintDayOffs.printDayOffByDate();
             case 4 -> ConsoleView.displayList(Filter.filterHolidayByDates());
@@ -55,10 +50,5 @@ public class App {
             default -> System.out.println("Zła opcja, wybierz inną.");
             }
         }
-    }
-
-    private static void calendarPrint() throws IOException {
-        ArrayList<DayOff> dayOffList = DayOffData.getDayOffList();
-        ConsoleView.displayList(dayOffList);
     }
 }

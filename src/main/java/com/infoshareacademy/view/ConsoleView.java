@@ -1,11 +1,13 @@
 package com.infoshareacademy.view;
 
+import com.infoshareacademy.api.DayOffData;
 import com.infoshareacademy.domain.DayOff;
 import de.vandermeer.asciitable.AT_Row;
 import de.vandermeer.asciitable.AsciiTable;
 import de.vandermeer.asciithemes.u8.U8_Grids;
 import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ConsoleView {
@@ -54,5 +56,10 @@ public class ConsoleView {
         asciiTable.getContext().setWidth(180);
         asciiTable.getContext().setGrid(U8_Grids.borderDoubleLight());
         System.out.println(asciiTable.render());
+    }
+
+    public static void calendarPrint() {
+        ArrayList<DayOff> dayOffList = DayOffData.getDayOffList();
+        ConsoleView.displayList(dayOffList);
     }
 }
