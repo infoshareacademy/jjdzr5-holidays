@@ -8,11 +8,9 @@ public class DateHoliday {
     public static final String RESET = "\033[0m";  // Text Reset
     public static final String GREEN = "\033[0;32m";   // GREEN
     public static final String PURPLE_BOLD = "\033[1;35m"; // PURPLE
-
     private String iso;
     private Map<String, String> datetime;
     private Map<String, String> timezone;
-
 
     @Override
     public String toString() {

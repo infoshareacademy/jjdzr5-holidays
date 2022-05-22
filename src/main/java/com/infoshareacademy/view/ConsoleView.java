@@ -29,8 +29,29 @@ public class ConsoleView {
             row.setTextAlignment(TextAlignment.CENTER);
             asciiTable.addRule();
         }
-        asciiTable.getContext().setWidth(250);
+        asciiTable.getContext().setWidth(180);
 
+        asciiTable.getContext().setGrid(U8_Grids.borderDoubleLight());
+        System.out.println(asciiTable.render());
+    }
+    public static void displayElement(DayOff id) {
+        AsciiTable asciiTable = new AsciiTable();
+        asciiTable.addRule();
+        AT_Row header = asciiTable.addRow("Name", "Description", "Country", "Date", "Type", "Locations", "Sates");
+        header.setTextAlignment(TextAlignment.CENTER);
+        asciiTable.addRule();
+        AT_Row row = asciiTable.addRow(
+                id.getName(),
+                id.getDescription(),
+                id.getCountry().get("name"),
+                id.getDate().getIso(),
+                id.getType()[0],
+                id.getLocations(),
+                id.getStates()
+        );
+        row.setTextAlignment(TextAlignment.CENTER);
+        asciiTable.addRule();
+        asciiTable.getContext().setWidth(180);
         asciiTable.getContext().setGrid(U8_Grids.borderDoubleLight());
         System.out.println(asciiTable.render());
     }

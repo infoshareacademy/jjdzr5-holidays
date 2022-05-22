@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class DayOffData {
 
-    public static ArrayList<DayOff> getDyOffList() {
+    public static ArrayList<DayOff> getDayOffList() {
         JsonReader jsonReader = new JsonReader();
         return jsonReader.getDayOffList();
     }
