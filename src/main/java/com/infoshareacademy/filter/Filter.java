@@ -1,22 +1,21 @@
 package com.infoshareacademy.filter;
 
-import com.infoshareacademy.DateHoliday;
 import com.infoshareacademy.api.DayOffData;
 import com.infoshareacademy.domain.DayOff;
-import com.infoshareacademy.tools.UserInteraction;
+import com.infoshareacademy.utils.UserInteraction;
 
-
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Filter {
 
     public static ArrayList<DayOff> filterHolidayByType () {
-        Stream<DayOff> dayOffStream = DayOffData.getDyOffList().stream();
+        Stream<DayOff> dayOffStream = DayOffData.getDayOffList().stream();
         String filteredType = UserInteraction.getTypeOfHoliday();
         List<DayOff> filteredList;
         filteredList = dayOffStream.filter(dayOff -> {
@@ -27,7 +26,7 @@ public class Filter {
     }
 
     public static ArrayList<DayOff> filterHolidayByDates () {
-        Stream<DayOff> dayOffStream = DayOffData.getDyOffList().stream();
+        Stream<DayOff> dayOffStream = DayOffData.getDayOffList().stream();
         List<LocalDate> dates = getStartAndFinishDate();
         List<DayOff> filteredList;
         filteredList = dayOffStream.filter(dayOff -> {
