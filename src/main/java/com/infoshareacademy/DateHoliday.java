@@ -11,6 +11,7 @@ public class DateHoliday {
     private String iso;
     private Map<String, String> datetime;
     private Map<String, String> timezone;
+
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
@@ -25,5 +26,8 @@ public class DateHoliday {
     public void setDatetime(Map<String, String> datetime) { this.datetime = datetime; }
     public Map<String, String> getTimezone() { return timezone; }
     public void setTimezone(Map<String, String> timezone) { this.timezone = timezone; }
-
+    public LocalDate refactorToLocalDate () {
+        LocalDate localDate = LocalDate.parse(this.iso.substring(0, 10));
+        return localDate;
+    }
 }

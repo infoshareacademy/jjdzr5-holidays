@@ -6,7 +6,10 @@ import java.util.*;
 import com.infoshareacademy.api.DayOffData;
 import com.infoshareacademy.domain.DayOff;
 import com.infoshareacademy.sort.Sorted;
+import com.infoshareacademy.filter.Filter;
+import com.infoshareacademy.search.Search;
 import com.infoshareacademy.view.ConsoleView;
+import com.infoshareacademy.view.PrintDayOffs;
 
 
 @SuppressWarnings("ALL")
@@ -43,9 +46,18 @@ public class App {
         switch (option) {
             case 1 -> calendarPrint();
             case 2 -> Sorted.sortByName();
+            case 3 -> PrintDayOffs.printDayOffByDate();
+            case 4 -> ConsoleView.displayList(Filter.filterHolidayByDates());
+            case 5 -> ConsoleView.displayList(Filter.filterHolidayByType());
+            case 6 -> searchHolidayByName();
             case 0 -> System.exit(0);
             default -> System.out.println("Zła opcja, wybierz inną.");
         }
+    }
+
+    private void searchHolidayByName() {
+        ArrayList<DayOff> matches = Search.findMatchingDaysOff();
+        ConsoleView.displayList(matches);
     }
 
     private static void calendarPrint() throws IOException {
@@ -53,8 +65,5 @@ public class App {
         ArrayList<DayOff> dayOffList = DayOffData.getDayOffList();
 
         ConsoleView.displayList(dayOffList);
-
     }
-
-
 }
